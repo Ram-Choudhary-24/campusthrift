@@ -46,3 +46,6 @@ server/src/utils/test_upgrades.js
 photos/
 /background_image.png
 client/public/fix_background.png
+
+# ===== Deployment Guides =====
+deployment_cheat_sheet.md
