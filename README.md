@@ -1,143 +1,137 @@
-# 🎓 CampusThrift — NITT Student Marketplace
+# CampusThrift - NITT Peer-to-Peer Student Marketplace
 
-A full-stack peer-to-peer marketplace built exclusively for NIT Trichy students to buy, sell, and trade second-hand items within the campus community.
-
----
-
-## ✨ Features
-
-- 🔐 **NITT-only Auth** — Registration restricted to `@nitt.edu` email addresses with OTP verification via NITT Webmail
-- 🛍️ **Listings** — Create, browse, search, and filter second-hand items by category, price, and condition
-- 💬 **Real-time Chat** — Socket.io-powered direct messaging between buyers and sellers
-- 💳 **Payments** — Stripe-integrated secure in-platform payment flow
-- ⭐ **Trust Score System** — Sellers earn an aggregate Trust Score from anonymous confidential buyer reviews
-- 📊 **Dashboard** — Track your listings, purchase requests, and transaction history
-- 🔔 **Notifications** — Real-time alerts for requests, messages, and status updates
-- 📋 **Admin Panel** — Manage users, listings, complaints, and resolve disputes
-- 🛡️ **Feedback & Complaints** — Submit bugs, rate sellers anonymously, or report inappropriate users/sellers
-- 📱 **Fully Responsive** — Mobile-first design with hamburger nav and touch-optimised UI
+CampusThrift is a full-stack peer-to-peer student marketplace platform engineered specifically for the National Institute of Technology, Tiruchirappalli (NITT) community. The system enables students to securely list, request, negotiate, and transact second-hand items within the campus.
 
 ---
 
-## 🛠️ Tech Stack
+## Key Capabilities
 
-| Layer | Technology |
-|---|---|
-| **Frontend** | React 18, Vite, TailwindCSS, TanStack React Query |
-| **Backend** | Node.js, Express.js |
-| **Database** | MongoDB + Mongoose |
-| **Real-time** | Socket.io |
-| **Auth** | JWT + OTP (NITT Webmail) |
-| **Email** | Brevo HTTP API (works on college Wi-Fi) |
-| **Images** | Cloudinary |
-| **Payments** | Stripe |
-| **Hosting** | GCP Cloud Run (backend) + Vercel (frontend) |
+- **NITT Directory Authentication**: User registration is restricted to verified `@nitt.edu` emails. Authentication incorporates secure JSON Web Tokens (JWT) coupled with One-Time Password (OTP) validation delivered via Brevo integrations.
+- **Unified Communication System**: Real-time buyer-seller negotiation chat utilizing Socket.io. The messaging engine groups chats strictly by participant pairs to prevent duplicate inbox threads and injects active product inquiry cards directly into the message log.
+- **Transaction Flow**: Incorporates buy request lifecycles and a Stripe payment gateway integration.
+- **Trust Score System**: Calculates seller credibility scores based on confidential, post-transaction anonymous buyer reviews.
+- **Moderation Engine**: Fine-grained administrative tools for listing deletion, user suspension, and global listing hide triggers on account block.
+- **Fully Responsive Architecture**: Structured layout with responsive grid listings, unified drawer navigation, and clean image-to-video file uploads.
 
 ---
 
-## 🚀 Getting Started (Local Development)
+## System Architecture & Tech Stack
+
+The application follows a decoupled client-server architecture:
+
+### Frontend
+- **Framework**: React 18 with Vite build tool.
+- **State Management & Caching**: TanStack React Query for declarative data fetching, loading states, and mutations.
+- **Styling**: Vanilla CSS with modern typography, dark theme panels, and CSS glassmorphism.
+- **Routing**: React Router DOM (v6) with path guards.
+
+### Backend
+- **Platform**: Node.js with Express.js REST API.
+- **Database**: MongoDB utilizing Mongoose schemas and compound indexes for query optimization.
+- **Real-time Engine**: Socket.io event-driven layer for online indicator logs and instant messaging sync.
+- **File Processing**: Multer memory storage parsed directly to Cloudinary storage buckets.
+
+---
+
+## Local Development Setup
 
 ### Prerequisites
-- Node.js 20+
-- MongoDB running locally
-- Brevo account (free tier — for OTP emails)
-- Cloudinary account (free tier — for image uploads)
+- Node.js (v20 or higher)
+- MongoDB server running locally or a MongoDB Atlas URI
+- Brevo API key (for mail delivery)
+- Cloudinary API credentials (for file hosting)
 
-### 1. Clone the repository
+### 1. Clone and Navigate
 ```bash
-git clone https://github.com/your-username/campus-thrift.git
-cd campus-thrift
+git clone https://github.com/Ram-Choudhary-24/campusthrift.git
+cd campusthrift
 ```
 
-### 2. Setup Server
-```bash
-cd server
-cp .env.production.example .env
-# Fill in your values in .env
-npm install
-npm run dev
-```
+### 2. Backend Setup
+1. Navigate to the server folder:
+   ```bash
+   cd server
+   ```
+2. Create your `.env` configuration file:
+   ```bash
+   cp .env.production.example .env
+   ```
+3. Populate the required environment variables in the newly created `.env` file.
+4. Install server dependencies and launch the server:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-### 3. Setup Client
-```bash
-cd client
-npm install
-npm run dev
-```
-
-The app will be available at `http://localhost:5173`
+### 3. Frontend Setup
+1. In a separate terminal session, navigate to the client folder:
+   ```bash
+   cd ../client
+   ```
+2. Install client dependencies and run the Vite bundler:
+   ```bash
+   npm install
+   npm run dev
+   ```
+3. The client application will be accessible at `http://localhost:5173`.
 
 ---
 
-## 📁 Project Structure
+## Docker Deployment (Recommended)
+
+The repository provides a production-ready Docker Compose configuration that sets up the database, server, and client services in unified containers.
+
+### Setup and Startup
+Run the following command in the project root directory:
+```bash
+docker compose up --build -d
+```
+This builds the client and server Dockerfiles, downloads the MongoDB image, and launches all containers in detached mode.
+
+---
+
+## Database Management Utilities
+
+The codebase includes a utility script to reset test databases to a clean start state while preserving administrative developer credentials.
+
+To run the database cleanup:
+```bash
+node server/src/utils/reset_database.js
+```
+*Note: This deletes all transaction histories, notifications, listings, and messages, but updates and preserves the registered admin emails (`205124076@nitt.edu` and `20514076@nitt.edu`).*
+
+---
+
+## Repository Structure
 
 ```
 campus_thrift/
-├── client/                  # React + Vite frontend
+├── client/                  # React Frontend
 │   ├── src/
-│   │   ├── api/             # Axios instance
-│   │   ├── components/      # Shared UI components
-│   │   │   ├── features/    # Feature-specific components
-│   │   │   └── layout/      # Navbar, Layout wrappers
-│   │   ├── hooks/           # Custom React hooks
-│   │   ├── pages/           # Route-level page components
-│   │   ├── store/           # Zustand auth store
-│   │   └── utils/           # Constants and helpers
-│   ├── vercel.json          # Vercel SPA routing config
+│   │   ├── api/             # Axios Instance configuration
+│   │   ├── components/      # Shared components
+│   │   ├── hooks/           # Custom state hooks
+│   │   ├── pages/           # Pages (Dashboard, Chat, etc.)
+│   │   ├── store/           # Zustand stores
+│   │   └── utils/           # Shared constants
 │   └── vite.config.js
 │
-├── server/                  # Node.js + Express backend
+├── server/                  # Node.js/Express Backend
 │   ├── src/
-│   │   ├── config/          # Database connection
-│   │   ├── controllers/     # Route handler logic
-│   │   ├── middleware/       # Auth, upload middleware
-│   │   ├── models/          # Mongoose schemas
+│   │   ├── config/          # Database configuration
+│   │   ├── controllers/     # Controller handlers
+│   │   ├── middleware/      # Auth, files middleware
+│   │   ├── models/          # Mongoose database models
 │   │   ├── routes/          # Express route definitions
-│   │   ├── services/        # Email, Socket.io, Cron
-│   │   └── utils/           # ApiError, ApiResponse helpers
-│   ├── Dockerfile           # GCP Cloud Run container
-│   ├── .dockerignore
-│   └── .env.production.example  # Environment variable template
+│   │   ├── services/        # Sockets, mail integrations
+│   │   └── utils/           # Custom helpers and utilities
+│   └── Dockerfile
 │
-└── docker-compose.yml       # Local full-stack development
+└── docker-compose.yml       # Production-ready compose configuration
 ```
 
 ---
 
-## 🌐 Deployment
+## Authors & Contributors
 
-### Frontend → Vercel
-1. Push this repo to GitHub
-2. Go to [vercel.com](https://vercel.com) → New Project → Import repo
-3. Set **Root Directory** to `client`
-4. Add environment variable: `VITE_API_URL=https://your-gcp-backend-url/api/v1`
-
-### Backend → GCP Cloud Run
-1. Install and authenticate [gcloud CLI](https://cloud.google.com/sdk)
-2. Build and push the container:
-```bash
-cd server
-gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/campusthrift-server
-```
-3. Deploy:
-```bash
-gcloud run deploy campusthrift-server \
-  --image gcr.io/YOUR_PROJECT_ID/campusthrift-server \
-  --platform managed --region us-central1 \
-  --allow-unauthenticated --port 8080
-```
-4. Set environment variables in Cloud Run console (use `.env.production.example` as template)
-
----
-
-## 🔒 Environment Variables
-
-See [`server/.env.production.example`](./server/.env.production.example) for all required variables.
-
-> ⚠️ Never commit your actual `.env` file. It is excluded by `.gitignore`.
-
----
-
-## 👨‍💻 Author
-
-**Ram Choudhary** — NIT Trichy
+- **Ram Choudhary** - NIT Trichy
