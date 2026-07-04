@@ -9,12 +9,12 @@ export default function PrivacyPolicy() {
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="absolute inset-0 bg-[#121212]/15 backdrop-blur-md"></div>
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-2xl"></div>
       </div>
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow max-w-[800px] w-full mx-auto px-4 py-16">
-          <div className="bg-[#181818] border border-[#333333] rounded-[2rem] p-8 md:p-12 shadow-2xl">
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-[2rem] p-8 md:p-12 shadow-2xl">
             <h1 className="text-3xl md:text-4xl font-extrabold mb-8 tracking-tight text-white">Privacy Policy</h1>
             <div className="space-y-6 text-white/70 leading-relaxed text-sm md:text-base">
               <p>

@@ -337,7 +337,7 @@ export default function ListingDetail() {
         {/* Main Grid: Images Column + Details Column */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* LEFT: Product Image Carousel & Thumbnails */}
-          <div className="lg:col-span-7 bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] rounded-3xl border border-slate-100/80 shadow-2xl  p-5 space-y-4">
+          <div className="lg:col-span-7 bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl border border-slate-100/80 shadow-2xl  p-5 space-y-4">
             {/* Aspect-ratio Locked Main Image viewport */}
             <div
               onClick={() => {
@@ -372,7 +372,7 @@ export default function ListingDetail() {
               {/* Hover Overlay */}
               {mediaItems[activeImageIndex]?.type === "image" && (
                 <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/90 backdrop-blur-sm text-slate-100 px-4 py-2 rounded-xl text-xs font-bold shadow-xl  flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                  <span className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/90 backdrop-blur-sm text-slate-100 px-4 py-2 rounded-xl text-xs font-bold shadow-xl  flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
                     🔍 Click for Fullscreen Preview
                   </span>
                 </div>
@@ -420,7 +420,7 @@ export default function ListingDetail() {
           {/* RIGHT: Product Details, Seller Bio, & Request Flow */}
           <div className="lg:col-span-5 space-y-6">
             {/* Core Listing Details Card */}
-            <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] rounded-3xl border border-slate-100/80 shadow-2xl  p-6 space-y-4">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl border border-slate-100/80 shadow-2xl  p-6 space-y-4">
               {/* Category & Status Row */}
               <div className="flex items-center justify-between gap-3">
                 <span className="text-[10px] font-black uppercase tracking-wider text-[#58a6ff] bg-[#388bfd]/10 px-3 py-1 rounded-full">
@@ -448,24 +448,29 @@ export default function ListingDetail() {
                     ₹{data.price.toLocaleString("en-IN")}
                   </p>
                 </div>
-                {user && (
-                  <button
-                    onClick={() => toggleWishlistMutation.mutate()}
-                    disabled={toggleWishlistMutation.isPending}
-                    className={`p-3 rounded-2xl border transition-all duration-200 flex-shrink-0 flex items-center justify-center ${
-                      isWishlisted
-                        ? "bg-rose-50 border-rose-100 text-rose-500 scale-105 shadow-2xl  hover:bg-rose-100"
-                        : "bg-slate-50 border-slate-100 text-slate-400 hover:text-rose-500 hover:border-rose-100 hover:bg-rose-50/30"
-                    }`}
-                    title={
-                      isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"
+                <button
+                  onClick={() => {
+                    if (!user) {
+                      toast("Please login to wishlist items", { icon: "🔒" });
+                      navigate("/login");
+                      return;
                     }
-                  >
-                    <span className="text-lg transition-transform duration-200 hover:scale-110">
-                      ❤️
-                    </span>
-                  </button>
-                )}
+                    toggleWishlistMutation.mutate();
+                  }}
+                  disabled={toggleWishlistMutation.isPending}
+                  className={`p-3 rounded-2xl border transition-all duration-200 flex-shrink-0 flex items-center justify-center ${
+                    isWishlisted
+                      ? "bg-rose-50 border-rose-100 text-rose-500 scale-105 shadow-2xl  hover:bg-rose-100"
+                      : "bg-slate-50 border-slate-100 text-slate-400 hover:text-rose-500 hover:border-rose-100 hover:bg-rose-50/30"
+                  }`}
+                  title={
+                    isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"
+                  }
+                >
+                  <span className="text-lg transition-transform duration-200 hover:scale-110">
+                    ❤️
+                  </span>
+                </button>
               </div>
 
               {/* Condition & Specific tags */}
@@ -495,7 +500,7 @@ export default function ListingDetail() {
             </div>
 
             {/* Seller profile & Trust Score Card */}
-            <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] rounded-3xl border border-slate-100/80 shadow-2xl  p-6 space-y-4">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl border border-slate-100/80 shadow-2xl  p-6 space-y-4">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                 {isSeller ? "Your Profile (Public View)" : "Seller Profile"}
               </h3>
@@ -575,7 +580,7 @@ export default function ListingDetail() {
             </div>
 
             {/* ACTION AREA: Seller vs Buyer logic */}
-            <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] rounded-3xl border border-slate-100/80 shadow-2xl  p-6">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl border border-slate-100/80 shadow-2xl  p-6">
               {isSeller ? (
                 /* SELLER CONTROLS */
                 <div className="space-y-4">
@@ -685,7 +690,14 @@ export default function ListingDetail() {
                       className="w-full border border-[#30363d] rounded-2xl px-4 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-[#58a6ff]/20 focus:border-[#58a6ff] bg-slate-50/50 hover:bg-slate-50 transition resize-none leading-relaxed"
                     />
                     <button
-                      onClick={() => sendRequestMutation.mutate()}
+                      onClick={() => {
+                        if (!user) {
+                          toast("Please login to request to buy", { icon: "🔒" });
+                          navigate("/login");
+                          return;
+                        }
+                        sendRequestMutation.mutate();
+                      }}
                       disabled={sendRequestMutation.isPending}
                       className="w-full bg-[#238636] hover:bg-[#2ea043] text-white font-bold py-3.5 rounded-2xl transition duration-200 disabled:opacity-50 shadow-2xl  hover:shadow-indigo-500/20 text-xs uppercase tracking-wider"
                     >
@@ -759,10 +771,17 @@ export default function ListingDetail() {
               </div>
             )}
 
-            {!isSeller && user && (
+            {!isSeller && (
               <div className="text-center pt-4">
                 <button
-                  onClick={() => setIsReportModalOpen(true)}
+                  onClick={() => {
+                    if (!user) {
+                      toast("Please login to report this listing", { icon: "🔒" });
+                      navigate("/login");
+                      return;
+                    }
+                    setIsReportModalOpen(true);
+                  }}
                   className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-rose-500 transition duration-150"
                 >
                   <span>⚠️</span>
@@ -787,7 +806,7 @@ export default function ListingDetail() {
                     navigate(`/listings/${listing._id}`);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className="bg-[#161b22]/85 border border-[#30363d] rounded-3xl shadow-lg hover:shadow-2xl transition duration-200 cursor-pointer flex flex-col h-full group"
+                  className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl shadow-lg hover:shadow-2xl transition duration-200 cursor-pointer flex flex-col h-full group"
                 >
                   {/* Image Viewport */}
                   <div className="aspect-video w-full bg-slate-100 relative overflow-hidden flex items-center justify-center">
@@ -846,7 +865,7 @@ export default function ListingDetail() {
             </span>
             <button
               onClick={() => setIsFullscreenModalOpen(false)}
-              className="w-10 h-10 rounded-full bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/10 hover:bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/20 transition flex items-center justify-center text-xl font-bold font-sans"
+              className="w-10 h-10 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/10 hover:bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/20 transition flex items-center justify-center text-xl font-bold font-sans"
               title="Close modal (Esc)"
             >
               ×
@@ -863,7 +882,7 @@ export default function ListingDetail() {
                     (prev - 1 + data.images.length) % data.images.length,
                 );
               }}
-              className="w-12 h-12 rounded-full bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/5 hover:bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/15 transition flex items-center justify-center text-white text-lg font-bold"
+              className="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/5 hover:bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/15 transition flex items-center justify-center text-white text-lg font-bold"
             >
               ◀
             </button>
@@ -881,7 +900,7 @@ export default function ListingDetail() {
                 e.stopPropagation();
                 setActiveImageIndex((prev) => (prev + 1) % data.images.length);
               }}
-              className="w-12 h-12 rounded-full bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/5 hover:bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/15 transition flex items-center justify-center text-white text-lg font-bold"
+              className="w-12 h-12 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/5 hover:bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/15 transition flex items-center justify-center text-white text-lg font-bold"
             >
               ▶
             </button>
@@ -913,7 +932,7 @@ export default function ListingDetail() {
       {/* SELLER EDIT LISTING MODAL DIALOG */}
       {isEditModalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 animate-scaleUp max-h-[90vh] overflow-y-auto">
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 animate-scaleUp max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-black text-slate-100">
                 Edit Product Details
@@ -1046,7 +1065,7 @@ export default function ListingDetail() {
       {/* REPORT LISTING MODAL */}
       {isReportModalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 animate-scaleUp">
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 animate-scaleUp">
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-2">
                 <span className="text-xl">⚠️</span>

@@ -42,7 +42,7 @@ export default function Login() {
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="absolute inset-0 bg-[#121212]/15 backdrop-blur-md"></div>
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-2xl"></div>
       </div>
 
       <div className="bg-black/60 backdrop-blur-2xl border border-white/10 rounded-[2rem] shadow-[0_8px_40px_rgba(0,0,0,0.5)] w-full max-w-md p-10 z-10 relative">

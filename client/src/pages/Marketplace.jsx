@@ -50,7 +50,7 @@ export default function Marketplace() {
         <h1 className="text-3xl font-extrabold mb-6 tracking-tight">Explore Marketplace</h1>
         
         {/* Search and Filters */}
-        <div className="bg-[#181818] border border-[#333333] rounded-3xl shadow-xl p-4 mb-8 flex flex-col md:flex-row gap-4 relative z-20">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl shadow-xl p-4 mb-8 flex flex-col md:flex-row gap-4 relative z-20">
           <div className="relative flex-1">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

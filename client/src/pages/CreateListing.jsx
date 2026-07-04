@@ -179,7 +179,7 @@ export default function CreateListing() {
       <Navbar />
 
       <div className="max-w-3xl mx-auto px-4 py-12">
-        <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] rounded-3xl shadow-xl border border-slate-100/80 p-8 md:p-10 transition-all duration-300">
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl shadow-xl border border-slate-100/80 p-8 md:p-10 transition-all duration-300">
           {/* Header */}
           <div className="mb-8">
             <span className="text-xs font-bold uppercase tracking-wider text-[#58a6ff] bg-[#388bfd]/10 px-3.5 py-1.5 rounded-full">
@@ -355,7 +355,7 @@ export default function CreateListing() {
                     {imagePreviews.map((src, i) => (
                       <div
                         key={i}
-                        className={`flex items-center justify-between p-3 rounded-2xl bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] border transition-all duration-200 ${
+                        className={`flex items-center justify-between p-3 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 border transition-all duration-200 ${
                           i === 0
                             ? "border-indigo-500 shadow-xl  ring-2 ring-[#58a6ff]/10"
                             : "border-slate-200 hover:border-indigo-200"
@@ -447,7 +447,7 @@ export default function CreateListing() {
                   </div>
                 </div>
               ) : (
-                <div className="flex flex-col sm:flex-row items-center justify-between p-3.5 rounded-2xl bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] gap-4">
+                <div className="flex flex-col sm:flex-row items-center justify-between p-3.5 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 gap-4">
                   <div className="flex items-center gap-3.5 min-w-0">
                     <div className="w-20 h-14 rounded-xl overflow-hidden border border-slate-100/80 bg-slate-900 flex-shrink-0">
                       <video

@@ -31,22 +31,8 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/marketplace"
-        element={
-          <ProtectedRoute>
-            <Marketplace />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/" element={<Home />} />
+      <Route path="/marketplace" element={<Marketplace />} />
       <Route
         path="/create-listing"
         element={
@@ -55,14 +41,7 @@ function App() {
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/listings/:id"
-        element={
-          <ProtectedRoute>
-            <ListingDetail />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/listings/:id" element={<ListingDetail />} />
       <Route
         path="/dashboard"
         element={

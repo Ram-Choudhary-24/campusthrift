@@ -83,7 +83,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`bg-[#121212]/80 backdrop-blur-2xl border-b border-[#333333] sticky top-0 z-50 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
+    <nav className={`bg-black/50 backdrop-blur-2xl border-b border-white/10 sticky top-0 z-50 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
       <div className="max-w-[1400px] mx-auto px-4 py-3 flex items-center justify-between gap-6">
         
         {/* Left Side: Logo & Navigation */}
@@ -104,12 +104,14 @@ export default function Navbar() {
             >
               Marketplace
             </Link>
-            <Link
-              to="/my-listings"
-              className="text-[15px] font-semibold text-white/70 hover:text-white transition px-3 py-2 rounded-xl hover:bg-white/10"
-            >
-              My Listings
-            </Link>
+            {isAuthenticated && (
+              <Link
+                to="/my-listings"
+                className="text-[15px] font-semibold text-white/70 hover:text-white transition px-3 py-2 rounded-xl hover:bg-white/10"
+              >
+                My Listings
+              </Link>
+            )}
             
             {isAuthenticated && (
               <Link
@@ -167,7 +169,7 @@ export default function Navbar() {
               </button>
 
               {isNotifDropdownOpen && (
-                <div className="absolute right-0 mt-3 w-80 bg-[#181818]/95 backdrop-blur-lg border border-[#333333] rounded-2xl shadow-2xl py-3 z-50 text-white animate-scaleUp">
+                <div className="absolute right-0 mt-3 w-80 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl py-3 z-50 text-white animate-scaleUp">
                   <div className="flex items-center justify-between px-4 pb-2 border-b border-[#333333]">
                     <span className="font-extrabold text-xs text-white">
                       Notifications
@@ -295,7 +297,7 @@ export default function Navbar() {
               </button>
 
               {isNotifDropdownOpen && (
-                <div className="absolute right-[-60px] mt-3 w-72 bg-[#181818]/95 backdrop-blur-lg border border-[#333333] rounded-2xl shadow-2xl py-3 z-50 text-white animate-scaleUp">
+                <div className="absolute right-[-60px] mt-3 w-72 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl py-3 z-50 text-white animate-scaleUp">
                   <div className="flex items-center justify-between px-4 pb-2 border-b border-[#333333]">
                     <span className="font-extrabold text-xs text-white">
                       Notifications
@@ -376,7 +378,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer menu overlay */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-[#121212]/95 border-b border-[#333333] px-4 py-4 space-y-3 animate-slideDown backdrop-blur-lg">
+        <div className="lg:hidden bg-black/80 backdrop-blur-2xl border-b border-white/10 px-4 py-4 space-y-3 animate-slideDown backdrop-blur-lg">
           <Link
             to="/marketplace"
             onClick={() => setIsMenuOpen(false)}
@@ -384,20 +386,24 @@ export default function Navbar() {
           >
             Marketplace
           </Link>
-          <Link
-            to="/dashboard?tab=profile"
-            onClick={() => setIsMenuOpen(false)}
-            className="block text-sm font-medium text-white/70 hover:text-white transition py-2.5 px-3 rounded-lg hover:bg-white/5"
-          >
-            👤 Profile Settings
-          </Link>
-          <Link
-            to="/my-listings"
-            onClick={() => setIsMenuOpen(false)}
-            className="block text-sm font-medium text-white/70 hover:text-white transition py-2.5 px-3 rounded-lg hover:bg-white/5"
-          >
-            My Listings
-          </Link>
+          {isAuthenticated && (
+            <Link
+              to="/dashboard?tab=profile"
+              onClick={() => setIsMenuOpen(false)}
+              className="block text-sm font-medium text-white/70 hover:text-white transition py-2.5 px-3 rounded-lg hover:bg-white/5"
+            >
+              👤 Profile Settings
+            </Link>
+          )}
+          {isAuthenticated && (
+            <Link
+              to="/my-listings"
+              onClick={() => setIsMenuOpen(false)}
+              className="block text-sm font-medium text-white/70 hover:text-white transition py-2.5 px-3 rounded-lg hover:bg-white/5"
+            >
+              My Listings
+            </Link>
+          )}
           {isAuthenticated && (
             <Link
               to="/chat"

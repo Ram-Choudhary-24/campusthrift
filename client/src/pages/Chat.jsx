@@ -331,15 +331,15 @@ export default function Chat() {
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="absolute inset-0 bg-[#121212]/15 backdrop-blur-md"></div>
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-2xl"></div>
       </div>
       <div className="relative z-10 flex flex-col h-screen">
         <Navbar />
 
-      <div className="flex-1 flex overflow-hidden max-w-7xl mx-auto w-full border-t border-slate-100 bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] shadow-2xl  md:rounded-b-3xl">
+      <div className="flex-1 flex overflow-hidden max-w-7xl mx-auto w-full border-t border-slate-100 bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 shadow-2xl  md:rounded-b-3xl">
         {/* LEFT PANEL: Conversations Sidebar */}
         <div
-          className={`w-full md:w-80 lg:w-[380px] border-r border-slate-100 flex flex-col flex-shrink-0 bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] transition-all duration-300 ${
+          className={`w-full md:w-80 lg:w-[380px] border-r border-slate-100 flex flex-col flex-shrink-0 bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 ${
             activeConversationId ? "hidden md:flex" : "flex"
           }`}
         >
@@ -514,7 +514,7 @@ export default function Chat() {
           {activeConversationId && recipient ? (
             <>
               {/* HEADER VIEWPORT */}
-              <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] border-b border-slate-100 px-6 py-4 flex items-center justify-between shadow-2xl  z-10 flex-shrink-0">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 border-b border-slate-100 px-6 py-4 flex items-center justify-between shadow-2xl  z-10 flex-shrink-0">
                 <div className="flex items-center gap-3.5 min-w-0">
                   {/* Mobile Back button */}
                   <button
@@ -615,7 +615,7 @@ export default function Chat() {
               <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-transparent">
                 {/* Floating Product Preview Banner inside active viewport */}
                 {activeConversation.listing && (
-                  <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/80 backdrop-blur-sm border border-slate-100 rounded-3xl p-4.5 flex gap-4 shadow-2xl  items-center max-w-xl mx-auto mb-6 transform hover:scale-[1.01] transition duration-200">
+                  <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/80 backdrop-blur-sm border border-slate-100 rounded-3xl p-4.5 flex gap-4 shadow-2xl  items-center max-w-xl mx-auto mb-6 transform hover:scale-[1.01] transition duration-200">
                     <div className="w-16 h-16 rounded-2xl overflow-hidden bg-slate-900 flex-shrink-0 shadow-inner">
                       {activeConversation.listing.images?.[0] ? (
                         <img
@@ -770,7 +770,7 @@ export default function Chat() {
                     <div className="w-8 h-8 rounded-full bg-slate-200 border flex items-center justify-center text-[10px] text-[#8b949e] font-bold uppercase">
                       {recipient.name?.[0]}
                     </div>
-                    <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] border border-slate-100 rounded-2xl rounded-tl-none px-4 py-3 shadow-2xl  flex items-center gap-1.5">
+                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 border border-slate-100 rounded-2xl rounded-tl-none px-4 py-3 shadow-2xl  flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
                       <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
                       <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
@@ -782,7 +782,7 @@ export default function Chat() {
               </div>
 
               {/* INPUT PANEL TRAY */}
-              <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] border-t border-slate-100 p-4.5 z-10 flex-shrink-0 space-y-3">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 border-t border-slate-100 p-4.5 z-10 flex-shrink-0 space-y-3">
                 {/* Micro Emoji interactive popover */}
                 {showEmojiPicker && (
                   <div className="flex gap-2 p-2 bg-slate-50 border border-slate-100 rounded-xl animate-scaleUp shadow-inner justify-around max-w-sm">
@@ -840,7 +840,7 @@ export default function Chat() {
                       placeholder="Type a message to negotiate..."
                       value={inputText}
                       onChange={handleInputChange}
-                      className="flex-1 bg-slate-50 border border-slate-100 rounded-xl px-4.5 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-[#58a6ff]/20 focus:border-[#58a6ff] focus:bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] text-slate-200 transition font-medium"
+                      className="flex-1 bg-slate-50 border border-slate-100 rounded-xl px-4.5 py-3 text-xs focus:outline-none focus:ring-2 focus:ring-[#58a6ff]/20 focus:border-[#58a6ff] focus:bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 text-slate-200 transition font-medium"
                     />
                     <button
                       type="submit"
@@ -866,7 +866,7 @@ export default function Chat() {
                 directories.
               </p>
 
-              <div className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] border border-slate-100 rounded-3xl p-5 text-left shadow-2xl  space-y-3 w-full">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 border border-slate-100 rounded-3xl p-5 text-left shadow-2xl  space-y-3 w-full">
                 <h4 className="text-[10px] font-black text-[#58a6ff] uppercase tracking-widest">
                   Marketplace Protocols
                 </h4>
@@ -895,7 +895,7 @@ export default function Chat() {
         <div className="fixed inset-0 z-50 bg-slate-950/90 flex items-center justify-center p-4 animate-fadeIn">
           <button
             onClick={() => setSelectedChatImage(null)}
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/10 hover:bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d]/20 transition flex items-center justify-center text-white text-xl font-bold font-sans"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/10 hover:bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20/20 transition flex items-center justify-center text-white text-xl font-bold font-sans"
             title="Close Lightbox"
           >
             ×

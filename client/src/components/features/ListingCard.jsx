@@ -10,7 +10,7 @@ const conditionColors = {
 export default function ListingCard({ listing }) {
   return (
     <Link to={`/listings/${listing._id}`} className="group block">
-      <div className="bg-[#161b22]/85 border border-[#30363d] rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#22c55e]/50 transition-all duration-300 overflow-hidden relative flex flex-col h-full">
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 hover:border-[#22c55e]/50 transition-all duration-300 overflow-hidden relative flex flex-col h-full">
         
         {/* Wishlist Button (absolute top right) */}
         <button 

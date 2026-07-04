@@ -58,7 +58,7 @@ export default function MyListings() {
         className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="absolute inset-0 bg-[#121212]/15 backdrop-blur-md"></div>
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-2xl"></div>
       </div>
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
@@ -99,7 +99,7 @@ export default function MyListings() {
             {listings.map((listing) => (
               <div
                 key={listing._id}
-                className="bg-[#161b22]/5 backdrop-blur-lg border border-[#30363d] rounded-xl border border-[#30363d] shadow-2xl  overflow-hidden flex"
+                className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-xl border border-[#30363d] shadow-2xl  overflow-hidden flex"
               >
                 {/* Thumbnail */}
                 <div className="w-24 h-24 sm:w-32 sm:h-auto bg-[#21262d]/50 backdrop-blur-sm border border-[#30363d] flex-shrink-0 flex items-center justify-center">
